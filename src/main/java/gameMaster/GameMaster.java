@@ -91,7 +91,12 @@ public class GameMaster {
 					System.out.println("0: " + currentPlayer.getHands().get(0));
 					System.out.println("1: " + currentPlayer.getHands().get(1));
 					System.out.println("ですので、死んでくださいね。");
+
 					currentPlayer.setRetired(true);
+
+					currentPlayer.getHands().forEach(currentPlayer.getTrash()::add);
+					currentPlayer.getHands().clear();
+
 					continue;
 				}
 			}
