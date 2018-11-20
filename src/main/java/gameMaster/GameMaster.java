@@ -201,6 +201,8 @@ public class GameMaster {
 		deck.add(new Card(7, "大臣"));
 
 		deck.add(new Card(8, "姫"));
+
+		//deck.add(new Card(0, "右京"));
 	}
 
 }
