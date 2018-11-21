@@ -168,9 +168,6 @@ public class EffectSolver {
 
 				if (!line.equals("0") && !line.equals("1") && !line.equals("2") && !line.equals("3")) {
 					System.out.println("0 ~ 3の数字を入力してください。");
-
-
-
 					continue;
 				}
 
