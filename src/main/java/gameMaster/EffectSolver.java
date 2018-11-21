@@ -168,12 +168,22 @@ public class EffectSolver {
 
 				if (!line.equals("0") && !line.equals("1") && !line.equals("2") && !line.equals("3")) {
 					System.out.println("0 ~ 3の数字を入力してください。");
+
+
+
 					continue;
 				}
 
 				int playerNum = Integer.parseInt(line);
 
 				selectedPlayer = playerList.get(playerNum);
+
+// 2018/11/21 kyuuu948 死んだプレイヤーを選択できてしまう処理の修正
+				if(selectedPlayer.isRetired()) {
+					System.out.println("選択したプレイヤーは死んでいます。生きているプレイヤーを選択してください。");
+					continue;
+				}
+
 				break;
 			}
 
@@ -205,7 +215,7 @@ public class EffectSolver {
 		return selectedPlayer;
 	}
 
-// 2018.11.20 Y.Kigawa 兵士カード選択処理追加
+// 2018/11/20 kyuuu948 兵士カード選択処理追加
 	private int selectCard(){
 
 		Scanner sc = new Scanner(System.in);
