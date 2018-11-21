@@ -22,7 +22,6 @@ public class EffectSolver {
 		Player opponentPlayer;
 		Card opponentHand;
 		Card currentHand;
-		int objectCard;
 
 		switch (card.getNumber()) {
 		case 1:
@@ -35,9 +34,11 @@ public class EffectSolver {
 				break;
 			}
 
-			objectCard = selectCard();
+			System.out.println("数字を選択してください: 2[道化], 3[騎士], 4[僧侶], 5[魔術師], 6[将軍], 7[大臣], 8[姫]");
+			line = sc.nextLine();
+			int cardNum = Integer.parseInt(line);
 
-			if (opponentHand.getNumber() == objectCard) {
+			if (opponentHand.getNumber() == cardNum) {
 				System.out.println("敵" + opponentPlayer + "を倒した");
 				opponentPlayer.getTrash().add(opponentHand);
 				opponentPlayer.getHands().clear();
@@ -203,31 +204,5 @@ public class EffectSolver {
 			break;
 		}
 		return selectedPlayer;
-	}
-
-// 2018.11.20 Y.Kigawa 兵士カード選択処理追加
-	private int selectCard(){
-
-		Scanner sc = new Scanner(System.in);
-		String line;
-
-			while (true) {
-				System.out.println("数字を選択してください: 2[道化], 3[騎士], 4[僧侶], 5[魔術師], 6[将軍], 7[大臣], 8[姫]");
-				line = sc.nextLine();
-
-
-				if (!line.equals("2") && !line.equals("3") && !line.equals("4") && !line.equals("5") && !line.equals("6") && !line.equals("7") && !line.equals("8")) {
-					System.out.println("2 ~ 8の数字を入力してください。");
-					continue;
-				}
-
-				int cardNum = Integer.parseInt(line);
-
-				return cardNum;
-
-			}
-
-
-
 	}
 }
