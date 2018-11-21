@@ -175,7 +175,7 @@ public class EffectSolver {
 
 				selectedPlayer = playerList.get(playerNum);
 
-// 2018/11/21 kyuuu948 死んだプレイヤーを選択できてしまう処理の修正
+				// 2018/11/21 kyuuu948 死んだプレイヤーを選択できてしまう処理の修正
 				if(selectedPlayer.isRetired()) {
 					System.out.println("選択したプレイヤーは死んでいます。生きているプレイヤーを選択してください。");
 					continue;
