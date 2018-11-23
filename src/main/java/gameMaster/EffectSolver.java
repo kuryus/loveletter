@@ -26,7 +26,7 @@ public class EffectSolver {
 
 		switch (card.getNumber()) {
 		case 1:
-			opponentPlayer = selectPlayer();
+			opponentPlayer = selectPlayer(currentPlayer);
 			opponentHand = opponentPlayer.getHands().get(0);
 
 			// 僧侶効果解決
@@ -48,7 +48,7 @@ public class EffectSolver {
 
 			break;
 		case 2:
-			opponentPlayer = selectPlayer();
+			opponentPlayer = selectPlayer(currentPlayer);
 
 			// 僧侶効果解決
 			if (opponentPlayer.isGuarded()) {
@@ -60,7 +60,7 @@ public class EffectSolver {
 			break;
 
 		case 3:
-			opponentPlayer = selectPlayer();
+			opponentPlayer = selectPlayer(currentPlayer);
 
 			// 僧侶効果解決
 			if (opponentPlayer.isGuarded()) {
@@ -98,7 +98,7 @@ public class EffectSolver {
 			break;
 
 		case 5:
-			opponentPlayer = selectPlayer();
+			opponentPlayer = selectPlayer(currentPlayer);
 
 			// 僧侶効果解決
 			if (opponentPlayer.isGuarded()) {
@@ -117,7 +117,7 @@ public class EffectSolver {
 			break;
 
 		case 6:
-			opponentPlayer = selectPlayer();
+			opponentPlayer = selectPlayer(currentPlayer);
 
 			// 僧侶効果解決
 			if (opponentPlayer.isGuarded()) {
@@ -156,10 +156,11 @@ public class EffectSolver {
 
 	}
 
-	private Player selectPlayer() {
+	private Player selectPlayer(Player currentPlayer) {
 		Scanner sc = new Scanner(System.in);
 		Player selectedPlayer;
 		String line;
+		int myNumber;
 
 		while (true) {
 			while (true) {
@@ -173,9 +174,17 @@ public class EffectSolver {
 
 				int playerNum = Integer.parseInt(line);
 
+				myNumber = currentPlayer.getNumber();
+
+				// 2018/11/23 kyuuu 自分選択不可対応
+				if(myNumber == playerNum) {
+					System.out.println("自分は選択できません。自分以外のプレイヤーを選択してください。");
+					continue;
+				}
+
 				selectedPlayer = playerList.get(playerNum);
 
-				// 2018/11/21 kyuuu948 死んだプレイヤーを選択できてしまう処理の修正
+				// 2018/11/21 kyuuu 死んだプレイヤーを選択できてしまう処理の修正
 				if(selectedPlayer.isRetired()) {
 					System.out.println("選択したプレイヤーは死んでいます。生きているプレイヤーを選択してください。");
 					continue;
@@ -212,7 +221,7 @@ public class EffectSolver {
 		return selectedPlayer;
 	}
 
-// 2018/11/20 kyuuu948 兵士カード選択処理追加
+// 2018/11/20 kyuuu 兵士カード選択処理追加
 	private int selectCard(){
 
 		Scanner sc = new Scanner(System.in);
