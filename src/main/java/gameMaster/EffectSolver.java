@@ -105,6 +105,17 @@ public class EffectSolver {
 				System.out.println("効果は無効化された！");
 				break;
 			}
+			// 2018.11.24 kyuuu 魔導士の効果で姫が捨てられた時の処理追加
+			opponentHand = opponentPlayer.getHands().get(0);
+			if (opponentHand.getNumber() == 8) {
+				opponentPlayer.getTrash().add(opponentHand);
+				opponentPlayer.getHands().clear();
+				opponentPlayer.setRetired(true);
+				System.out.println(opponentPlayer.getNumber() + "は" + opponentHand + "を捨ててしまった！");
+				System.out.println("姫を捨てるなんてとんでもない！");
+				System.out.println("player" + opponentPlayer.getNumber() + "はしんでしまった！！！");
+
+			} else {
 
 			Card trashing = opponentPlayer.getHands().get(0);
 			opponentPlayer.getHands().remove(0);
@@ -113,6 +124,8 @@ public class EffectSolver {
 			opponentPlayer.getHands().add(deck.poll());
 
 			System.out.println(trashing + "を捨てた。");
+
+			}
 
 			break;
 
@@ -177,7 +190,7 @@ public class EffectSolver {
 				myNumber = currentPlayer.getNumber();
 
 				// 2018/11/23 kyuuu 自分選択不可対応
-				if(myNumber == playerNum) {
+				if (myNumber == playerNum) {
 					System.out.println("自分は選択できません。自分以外のプレイヤーを選択してください。");
 					continue;
 				}
@@ -185,7 +198,7 @@ public class EffectSolver {
 				selectedPlayer = playerList.get(playerNum);
 
 				// 2018/11/21 kyuuu 死んだプレイヤーを選択できてしまう処理の修正
-				if(selectedPlayer.isRetired()) {
+				if (selectedPlayer.isRetired()) {
 					System.out.println("選択したプレイヤーは死んでいます。生きているプレイヤーを選択してください。");
 					continue;
 				}
